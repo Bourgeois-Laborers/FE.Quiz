@@ -1,6 +1,6 @@
 {
-    "name": "Quiz",
-    "short_name": "quiz",
+    "name": "Quiz App",
+    "short_name": "Quiz",
     "description": "A fun and interactive Quiz App to test your knowledge using generated tests on provided topics.",
     "icons": [
         {
