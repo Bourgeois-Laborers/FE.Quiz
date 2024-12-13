@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { PhGithubLogo } from '@phosphor-icons/vue';
+import { PhGithubLogo } from '@phosphor-icons/vue'
 
-const GITHUB = 'https://github.com/Bourgeois-Laborers';
+const GITHUB = 'https://github.com/Bourgeois-Laborers'
 </script>
 
 <template>
     <footer class="app-footer">
-        <p class="text-sm "> Bourgeois & Laborers © 2024 </p>
+        <p class="text-sm">Bourgeois & Laborers © 2024</p>
 
         <a :href="GITHUB" target="_blank">
             <PhGithubLogo :size="24" aria-hidden="true" />
-            <span class="sr-only">
-                Bourgeois & Laborers GitHub
-            </span>
+            <span class="sr-only"> Bourgeois & Laborers GitHub </span>
         </a>
     </footer>
 </template>
