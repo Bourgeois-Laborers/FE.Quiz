@@ -4,11 +4,20 @@ import AppHeader from '@/components/app/AppHeader.vue'
 </script>
 
 <template>
-    <AppHeader />
+    <div class="layout-default">
+        <AppHeader />
 
-    <main>
-        <slot></slot>
-    </main>
+        <main class="container flex-1">
+            <slot></slot>
+        </main>
 
-    <AppFooter />
+        <AppFooter />
+    </div>
 </template>
+
+<style>
+.layout-default {
+    @apply min-h-screen;
+    @apply flex flex-col;
+}
+</style>
