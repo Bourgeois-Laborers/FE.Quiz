@@ -17,7 +17,7 @@ const GITHUB = 'https://github.com/Bourgeois-Laborers'
 
 <style>
 .app-footer {
-    @apply px-4 py-2 md:px-6 md:py-3;
+    @apply px-4 py-3 md:px-6 md:py-5;
     @apply flex items-center justify-between;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <header class="app-header">
         <RouterLink class="app-header__logo" to="/">
-            <img src="@/assets/images/logo.png" width="48" height="48" loading="lazy" alt="Quiz logo" />
+            <img src="@/assets/images/logo.png" width="40" height="40" loading="lazy" alt="Quiz logo" />
 
             <h1>Quiz</h1>
         </RouterLink>
