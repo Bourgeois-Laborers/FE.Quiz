@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 declare module 'vue-router' {
     interface RouteMeta {
-        layout: 'default' | 'blank';
+        layout: 'default' | 'blank'
     }
 }
 
@@ -14,7 +14,7 @@ const router = createRouter({
             name: 'Home',
             meta: { layout: 'default' },
             component: () => import('@/views/HomeView.vue'),
-        }
+        },
     ],
 })
 
