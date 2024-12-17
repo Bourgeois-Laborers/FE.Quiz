@@ -1,7 +1,11 @@
+<script setup lang="ts">
+import { BrainCircuit } from 'lucide-vue-next'
+</script>
+
 <template>
     <header class="app-header">
         <RouterLink class="app-header__logo" to="/">
-            <img src="@/assets/images/logo.png" width="40" height="40" loading="lazy" alt="Quiz logo" />
+            <BrainCircuit :size="40" aria-hidden="true" />
 
             <h1>Quiz</h1>
         </RouterLink>
