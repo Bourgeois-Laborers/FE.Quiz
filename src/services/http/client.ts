@@ -1,5 +1,5 @@
-import AxiosHttpClient from './axios';
+import AxiosHttpClient from './axios'
 
-const httpClientInstance = new AxiosHttpClient();
+const httpClientInstance = new AxiosHttpClient()
 
-export default httpClientInstance;
+export default httpClientInstance

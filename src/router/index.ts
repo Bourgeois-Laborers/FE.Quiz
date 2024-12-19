@@ -15,6 +15,12 @@ const router = createRouter({
             meta: { layout: 'blank' },
             component: () => import('@/views/HomeView.vue'),
         },
+        {
+            path: '/session/:id',
+            name: 'Session',
+            meta: { layout: 'default' },
+            component: () => import('@/views/SessionView.vue'),
+        },
     ],
 })
 
