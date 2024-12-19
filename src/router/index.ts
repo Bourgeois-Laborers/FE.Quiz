@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 declare module 'vue-router' {
     interface RouteMeta {
-        layout: 'default' | 'blank';
+        layout: 'default' | 'blank'
     }
 }
 
@@ -12,9 +12,15 @@ const router = createRouter({
         {
             path: '/',
             name: 'Home',
-            meta: { layout: 'default' },
+            meta: { layout: 'blank' },
             component: () => import('@/views/HomeView.vue'),
-        }
+        },
+        {
+            path: '/session/:id',
+            name: 'Session',
+            meta: { layout: 'default' },
+            component: () => import('@/views/SessionView.vue'),
+        },
     ],
 })
 
