@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { useTitle } from '@vueuse/core'
 import { BrainCircuit, MessageCircleQuestion, Sparkles, Bot, GraduationCap, Users, Settings2 } from 'lucide-vue-next'
 
-import { Button } from '@/components/base/button'
 import { Card } from '@/components/base/card'
+
+import LoginForm from '@/components/LoginForm.vue'
+
+useTitle(`Quiz App | Let's get started!`)
 
 const features = [
     {
@@ -37,14 +41,16 @@ const features = [
         <BrainCircuit :size="80" class="mb-8" />
 
         <div class="mb-8">
-            <h2 class="mb-6"> Welcome to our interactive quiz app! </h2>
+            <h2 class="mb-6">Welcome to our interactive quiz app!</h2>
+
             <p class="mb-2">
                 Challenge your knowledge across various topics with randomly generated questions powered by ChatGPT.
             </p>
-            <p> Test yourself and learn something new every time! </p>
+
+            <p>Test yourself and learn something new every time!</p>
         </div>
 
-        <Button size="lg" class="mb-8"> Let's get started! </Button>
+        <LoginForm class="mb-12" />
 
         <Card class="home-view__features">
             <ul>

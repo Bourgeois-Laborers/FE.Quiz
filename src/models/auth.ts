@@ -1,5 +1,5 @@
 interface SignUpData {
-    username: string;
+    username: string
 }
 
-export type { SignUpData };
+export type { SignUpData }
