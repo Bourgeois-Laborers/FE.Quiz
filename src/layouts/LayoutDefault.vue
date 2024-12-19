@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import AppFooter from '@/components/app/AppFooter.vue';
-import AppHeader from '@/components/app/AppHeader.vue';
+import AppHeader from '@/components/app/AppHeader.vue'
+import AppFooter from '@/components/app/AppFooter.vue'
 </script>
 
 <template>
-    <AppHeader />
+    <div class="layout-default">
+        <AppHeader />
 
-    <main>
-        <slot></slot>
-    </main>
+        <main class="container flex-1">
+            <slot></slot>
+        </main>
 
-    <AppFooter />
+        <AppFooter />
+    </div>
 </template>
+
+<style>
+.layout-default {
+    @apply min-h-screen;
+    @apply flex flex-col;
+}
+</style>
