@@ -6,7 +6,7 @@ import { GITHUB_URL } from '@/constants/links'
 
 <template>
     <footer class="app-footer">
-        <p class="text-sm">Bourgeois & Laborers © 2024</p>
+        <p class="text-xs">Bourgeois & Laborers © 2024</p>
 
         <a :href="GITHUB_URL" target="_blank">
             <Github :size="24" aria-hidden="true" />
