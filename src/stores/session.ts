@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { readonly, ref } from 'vue'
 
-import { createSession, updateSession, joinSession } from '@/services/session'
+import { createSession, joinSession } from '@/services/session'
 
 import type { Session } from '@/models/session'
 
@@ -14,10 +14,6 @@ export const useSessionStore = defineStore('session', () => {
         return data
     }
 
-    const updateExistingSession = async () => {
-        // TODO
-    }
-
     const joinExistingSession = async (sessionId: string, userAlias: string): Promise<Session> => {
         const { data } = await joinSession({ sessionId, userAlias })
         session.value = data
@@ -28,7 +24,6 @@ export const useSessionStore = defineStore('session', () => {
         session: readonly(session),
 
         createNewSession,
-        updateExistingSession,
         joinExistingSession,
     }
 })
