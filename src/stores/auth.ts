@@ -1,23 +1,29 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { readonly, ref } from 'vue'
 
-import { signUp } from '@/services/auth'
+import { signUp, signIn } from '@/services/auth'
 
 import type { User } from '@/models/user'
 
 export const useAuthStore = defineStore('auth', () => {
-    const userData = ref<User | null>(null)
+    const user = ref<User | null>(null)
 
-    const user = computed(() => userData.value)
+    const signUpUser = async (): Promise<User> => {
+        const { data } = await signUp()
+        user.value = data
+        return data
+    }
 
-    const signUpUser = async (username: string) => {
-        const { data } = await signUp({ username })
-        userData.value = data
+    const signInUser = async (userId: string): Promise<User> => {
+        const { data } = await signIn({ id: userId })
+        user.value = data
+        return data
     }
 
     return {
-        user,
+        user: readonly(user),
 
         signUpUser,
+        signInUser,
     }
 })
