@@ -4,11 +4,11 @@ import type { CreateSessionData, JoinSessionData } from '@/services/types/sessio
 import type { Session } from '@/models/session'
 
 const createSession = async (data: CreateSessionData) => {
-    return httpClient.post<Session>('/session', { userAlias: data.userAlias })
+    return httpClient.post<Session>('/sessions', { userAlias: data.userAlias })
 }
 
 const joinSession = async (data: JoinSessionData) => {
-    return httpClient.post<Session>(`/session/${data.sessionId}/join`, { userAlias: data.userAlias })
+    return httpClient.post<Session>(`/sessions/${data.sessionId}/join`, { userAlias: data.userAlias })
 }
 
 export { createSession, joinSession }
