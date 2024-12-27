@@ -4,6 +4,8 @@ import { Armchair } from 'lucide-vue-next'
 import { Card } from '@/components/base/card'
 
 import SessionSharePopover from '@/components/SessionSharePopover.vue'
+
+const sessionUrl = window.location.href
 </script>
 
 <template>
@@ -14,7 +16,7 @@ import SessionSharePopover from '@/components/SessionSharePopover.vue'
                 Party
             </h3>
 
-            <SessionSharePopover />
+            <SessionSharePopover :url="sessionUrl" />
         </div>
 
         <p class="text-sm text-gray-500">Waiting for players to join...</p>

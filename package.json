@@ -20,6 +20,7 @@
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.468.0",
     "pinia": "^2.2.6",
+    "qrcode": "^1.5.4",
     "radix-vue": "^1.9.11",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.9.3",
+    "@types/qrcode": "^1.5.5",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.1.3",

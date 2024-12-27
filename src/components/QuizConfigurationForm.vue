@@ -20,7 +20,7 @@ import { formatSeconds } from '@/utils/formatSeconds'
 type FormValues = {
     prompt: string
     questionsCount: number
-    questionTimeLimit: number
+    questionTimeLimit: [number]
 }
 
 const QUESTIONS_COUNT_MIN = 3
