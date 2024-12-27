@@ -14,6 +14,7 @@ import { BrainCircuit } from 'lucide-vue-next'
 
 <style>
 .app-header {
+    /* @apply border-b border-gray-100 shadow-sm; */
     @apply px-4 py-2 md:px-6 md:py-3;
 }
 

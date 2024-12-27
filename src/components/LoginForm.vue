@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
@@ -9,10 +10,18 @@ import { Input } from '@/components/base/input'
 import { toast } from '@/components/base/toast'
 
 import { useAuthStore } from '@/stores/auth'
+import { useSessionStore } from '@/stores/session'
+
+type FormValues = {
+    username: string
+}
 
 const { signUpUser } = useAuthStore()
+const { createNewSession } = useSessionStore()
 
-const { handleSubmit } = useForm({
+const router = useRouter()
+
+const { handleSubmit } = useForm<FormValues>({
     validationSchema: toTypedSchema(
         z.object({
             username: z
@@ -27,14 +36,18 @@ const { handleSubmit } = useForm({
 })
 
 const onSubmit = handleSubmit(
-    async (values) => {
+    async (values: FormValues) => {
         try {
-            await signUpUser(values.username)
-            // TODO:
-            // - Create a new session
-            // - Redirect to the session view
-        } catch (error: unknown) {
-            console.error(error)
+            await signUpUser()
+            const session = await createNewSession({ userAlias: values.username })
+
+            router.push(`/session/${session.id}`)
+        } catch {
+            toast({
+                title: 'Whoops!',
+                description: 'Something went wrong, please try again later.',
+                duration: 10000,
+            })
         }
     },
     ({ errors }) => {
@@ -48,17 +61,15 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <Transition name="" appear>
-        <form class="w-full flex items-center justify-center gap-4" @submit.prevent="onSubmit">
-            <FormField v-slot="{ componentField }" name="username">
-                <FormItem>
-                    <FormControl>
-                        <Input type="text" placeholder="Enter name" max="50" v-bind="componentField" />
-                    </FormControl>
-                </FormItem>
-            </FormField>
+    <form class="w-full flex items-center justify-center gap-4" @submit.prevent="onSubmit">
+        <FormField v-slot="{ componentField }" name="username">
+            <FormItem>
+                <FormControl>
+                    <Input type="text" placeholder="Enter name" max="50" v-bind="componentField" />
+                </FormControl>
+            </FormItem>
+        </FormField>
 
-            <Button size="lg" type="submit"> Let's get started! </Button>
-        </form>
-    </Transition>
+        <Button size="lg" type="submit"> Let's get started! </Button>
+    </form>
 </template>
