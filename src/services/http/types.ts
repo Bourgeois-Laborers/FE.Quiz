@@ -5,9 +5,7 @@ type RequestOptions = {
     headers?: Record<string, string>
 }
 
-type RequestResponse<T> = {
-    data: T
-}
+type RequestResponse<T> = T
 
 interface HttpClient {
     get<T>(url: string, options: RequestOptions): Promise<RequestResponse<T>>
