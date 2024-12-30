@@ -1,8 +1,8 @@
-const animate = require("tailwindcss-animate")
+import tailwindcssAnimate from "tailwindcss-animate"
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
+export default {
+  darkMode: 'media',
   content: [
     './pages/**/*.{ts,tsx,vue}',
     './components/**/*.{ts,tsx,vue}',
@@ -35,5 +35,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [tailwindcssAnimate],
 }

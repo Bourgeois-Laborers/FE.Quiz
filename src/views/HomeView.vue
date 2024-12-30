@@ -94,7 +94,7 @@ const features = [
 .home-view__features li {
     @apply flex flex-col items-center;
     @apply rounded-md;
-    @apply bg-gray-100;
+    @apply bg-gray-100 dark:bg-gray-900;
     @apply p-3;
 }
 </style>
