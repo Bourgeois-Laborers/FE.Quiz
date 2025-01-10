@@ -1,8 +1,13 @@
-import httpClient from './http/client'
+import { httpClient } from './http/client'
 
-import type { SignUpData } from '@/models/auth'
-import type { User } from '@/models/user'
+import type { SignUpResponse, SignInData, SignInResponse } from '@/services/types/auth'
 
-export const signUp = async (data: SignUpData) => {
-    return httpClient.post<User>('/auth/signup', data)
+const signUp = async () => {
+    return httpClient.post<SignUpResponse>('/auth/sign-up', {})
 }
+
+const signIn = async (data: SignInData) => {
+    return httpClient.post<SignInResponse>('/auth/sign-in', data)
+}
+
+export { signUp, signIn }
