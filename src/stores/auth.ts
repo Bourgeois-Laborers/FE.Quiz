@@ -24,27 +24,27 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     const signUpUser = async (): Promise<string> => {
-        const { accessToken } = await signUp()
+        const { data } = await signUp()
 
-        const tokenData = decode<DecodedToken>(accessToken)
+        const tokenData = decode<DecodedToken>(data.accessToken)
         const userData = transformDecodedTokenToUser(tokenData)
 
         user.value = userData
-        setCookie(ACCESS_TOKEN, accessToken)
+        setCookie(ACCESS_TOKEN, data.accessToken)
 
-        return accessToken
+        return data.accessToken
     }
 
     const signInUser = async (userId: string): Promise<string> => {
-        const { accessToken } = await signIn({ id: userId })
+        const { data } = await signIn({ id: userId })
 
-        const tokenData = decode<DecodedToken>(accessToken)
+        const tokenData = decode<DecodedToken>(data.accessToken)
         const userData = transformDecodedTokenToUser(tokenData)
 
         user.value = userData
-        setCookie(ACCESS_TOKEN, accessToken)
+        setCookie(ACCESS_TOKEN, data.accessToken)
 
-        return accessToken
+        return data.accessToken
     }
 
     const signOutUser = (): void => {

@@ -7,7 +7,7 @@ const useCookies = () => {
         cookies.set(name, value)
     }
 
-    const getCookie = (name: string): void => {
+    const getCookie = (name: string): string => {
         return cookies.get(name)
     }
 
