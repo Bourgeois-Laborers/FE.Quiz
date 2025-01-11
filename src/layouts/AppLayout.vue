@@ -14,7 +14,7 @@ const layout = computed(() => {
         case 'blank':
             return AsyncLayoutBlank
         default:
-            return AsyncLayoutDefault
+            return AsyncLayoutBlank
     }
 })
 </script>
