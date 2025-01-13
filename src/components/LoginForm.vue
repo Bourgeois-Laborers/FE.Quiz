@@ -9,15 +9,15 @@ import { FormControl, FormField, FormItem } from '@/components/base/form'
 import { Input } from '@/components/base/input'
 import { toast } from '@/components/base/toast'
 
-import { useAuthStore } from '@/stores/auth'
-import { useSessionStore } from '@/stores/session'
+import { useAuthStore } from '@/stores/auth.store'
+import { useSessionStore } from '@/stores/session.store'
 
 type FormValues = {
     username: string
 }
 
-const { signUpUser } = useAuthStore()
-const { createNewSession } = useSessionStore()
+const { isAuthenticated, signUpUser } = useAuthStore()
+const { userAlias, createNewSession } = useSessionStore()
 
 const router = useRouter()
 
@@ -33,12 +33,18 @@ const { handleSubmit } = useForm<FormValues>({
                 .max(50, 'It seems to much! Your name is too long, at most 50 characters allowed.'),
         }),
     ),
+    initialValues: {
+        username: userAlias,
+    },
 })
 
 const onSubmit = handleSubmit(
     async (values: FormValues) => {
         try {
-            await signUpUser()
+            if (!isAuthenticated) {
+                await signUpUser()
+            }
+
             const session = await createNewSession({ userAlias: values.username })
 
             router.push(`/session/${session.id}`)

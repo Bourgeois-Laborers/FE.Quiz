@@ -31,7 +31,7 @@ class AxiosHttpClient implements HttpClient {
 
         this.instance.interceptors.response.use(
             (response) => response.data,
-            (error) => Promise.reject(error)
+            (error) => Promise.reject(error),
         )
     }
 

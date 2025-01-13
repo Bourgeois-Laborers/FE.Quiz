@@ -4,20 +4,20 @@ import { useTitle } from '@vueuse/core'
 import SessionLobby from '@/components/SessionLobby.vue'
 import QuizConfigurationForm from '@/components/QuizConfigurationForm.vue'
 
-useTitle(`Quiz App | Session`)
+useTitle(`Quiz App | Session configuration`)
 </script>
 
 <template>
     <div class="session-view">
-        <SessionLobby class="flex-1" />
+        <SessionLobby class="w-full h-max" />
 
-        <QuizConfigurationForm class="flex-1" />
+        <QuizConfigurationForm class="w-full" />
     </div>
 </template>
 
 <style>
 .session-view {
-    @apply flex flex-col justify-center md:flex-row gap-6;
+    @apply flex flex-col justify-center gap-6;
     @apply py-6 md:py-8;
 }
 </style>
