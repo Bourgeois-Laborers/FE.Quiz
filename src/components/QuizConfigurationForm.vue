@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { h } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -22,6 +23,8 @@ type FormValues = {
     questionsCount: number
     questionTimeLimit: [number]
 }
+
+const router = useRouter()
 
 const QUESTIONS_COUNT_MIN = 3
 const QUESTIONS_COUNT_MAX = 25
@@ -103,11 +106,15 @@ const onSubmit = handleSubmit(
         })
     },
 )
+
+const onReset = () => {
+    router.push('/')
+}
 </script>
 
 <template>
-    <form @submit.prevent="onSubmit">
-        <Card class="p-4">
+    <form @submit.prevent="onSubmit" @reset="onReset">
+        <Card class="p-4 mb-8">
             <h3 class="flex items-center text-base font-medium mb-1">
                 <Bolt :size="18" aria-hidden="true" class="mr-2" />
                 Configuration
@@ -152,7 +159,7 @@ const onSubmit = handleSubmit(
 
             <FormField v-slot="{ componentField, value }" name="questionTimeLimit">
                 <FormItem class="mb-4">
-                    <FormLabel>Question time limit</FormLabel>
+                    <FormLabel>Question timer</FormLabel>
                     <div class="flex items-center gap-2">
                         <FormControl>
                             <Slider
@@ -169,6 +176,7 @@ const onSubmit = handleSubmit(
             </FormField>
         </Card>
 
-        <Button size="lg" type="submit" class="w-full mt-8">Generate & Start</Button>
+        <Button size="lg" type="reset" variant="ghost" class="w-full hover:text-red-500 mb-2"> Cancel </Button>
+        <Button size="lg" type="submit" class="w-full">Generate & Start</Button>
     </form>
 </template>
