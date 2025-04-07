@@ -6,6 +6,7 @@ interface DecodedToken {
 
 type SignUpResponse = {
     accessToken: string
+    refreshToken: string
 }
 
 type SignInData = {
@@ -14,6 +15,7 @@ type SignInData = {
 
 type SignInResponse = {
     accessToken: string
+    refreshToken: string
 }
 
 export type { DecodedToken, SignUpResponse, SignInData, SignInResponse }
