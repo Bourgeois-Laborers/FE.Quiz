@@ -23,6 +23,7 @@
 		"pinia": "^2.2.6",
 		"qrcode": "^1.5.4",
 		"radix-vue": "^1.9.11",
+		"socket.io-client": "^4.8.1",
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7",
 		"universal-cookie": "^7.2.2",

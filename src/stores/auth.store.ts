@@ -1,18 +1,19 @@
 import { defineStore } from 'pinia'
-import { readonly, ref } from 'vue'
+import { readonly, ref, computed } from 'vue'
 
-import { signUp, signIn } from '@/services/auth'
+import { signUp, signIn } from '@/services/auth.service'
 
 import useCookies from '@/composables/useCookies'
 import useJwt from '@/composables/useJwt'
 
-import { ACCESS_TOKEN } from '@/constants/cookies'
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies'
 
-import type { User } from '@/models/user'
+import type { User } from '@/models/user.model'
 import type { DecodedToken } from '@/services/types/auth'
 
 export const useAuthStore = defineStore('auth', () => {
     const user = ref<User | null>(null)
+    const isAuthenticated = computed<boolean>(() => !!user.value)
 
     const { setCookie, removeCookie } = useCookies()
     const { decode } = useJwt()
@@ -31,6 +32,7 @@ export const useAuthStore = defineStore('auth', () => {
 
         user.value = userData
         setCookie(ACCESS_TOKEN, data.accessToken)
+        setCookie(REFRESH_TOKEN, data.refreshToken)
 
         return data.accessToken
     }
@@ -43,6 +45,7 @@ export const useAuthStore = defineStore('auth', () => {
 
         user.value = userData
         setCookie(ACCESS_TOKEN, data.accessToken)
+        setCookie(REFRESH_TOKEN, data.refreshToken)
 
         return data.accessToken
     }
@@ -50,10 +53,12 @@ export const useAuthStore = defineStore('auth', () => {
     const signOutUser = (): void => {
         user.value = null
         removeCookie(ACCESS_TOKEN)
+        removeCookie(REFRESH_TOKEN)
     }
 
     return {
         user: readonly(user),
+        isAuthenticated,
 
         signUpUser,
         signInUser,
