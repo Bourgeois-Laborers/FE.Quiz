@@ -1,5 +1,9 @@
-<template>
-  <q-page> </q-page>
-</template>
+<script setup lang="ts">
+import CreateSessionForm from 'src/components/session/CreateSessionForm.vue';
+</script>
 
-<script setup lang="ts"></script>
+<template>
+  <q-page>
+    <CreateSessionForm />
+  </q-page>
+</template>

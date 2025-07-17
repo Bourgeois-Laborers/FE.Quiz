@@ -4,5 +4,10 @@ export default {
   },
   session: {
     title: 'Session',
+    create: {
+      username: 'Username',
+      usernamePlaceholder: 'Enter your username',
+      submit: 'Create Session',
+    },
   },
 };
