@@ -3,20 +3,19 @@ import type { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/HomePage.vue') }],
+    component: () => import('@/layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('@/views/HomePage.vue') }
+    ],
   },
 
   {
     path: '/session/:sessionId',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/SessionPage.vue') }],
-  },
-
-  {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/NotFoundPage.vue'),
-  },
+    component: () => import('@/layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('@/views/SessionPage.vue') }
+    ],
+  }
 ];
 
-export default routes;
+export { routes };
