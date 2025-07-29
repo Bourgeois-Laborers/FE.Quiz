@@ -1,33 +1,75 @@
-# Quiz App (fe.quiz)
+# Nuxt Minimal Starter
 
-Quiz app that tests your knowledge across various topics
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Install the dependencies
+## Setup
+
+Make sure to install dependencies:
 
 ```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
 yarn install
+
+# bun
+bun install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## Development Server
+
+Start the development server on `http://localhost:3000`:
 
 ```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
 yarn dev
+
+# bun
+bun run dev
 ```
 
-### Lint the files
+## Production
+
+Build the application for production:
 
 ```bash
-yarn lint
-```
+# npm
+npm run build
 
-### Format the files
+# pnpm
+pnpm build
 
-```bash
-yarn format
-```
-
-### Build the app for production
-
-```bash
+# yarn
 yarn build
+
+# bun
+bun run build
 ```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
