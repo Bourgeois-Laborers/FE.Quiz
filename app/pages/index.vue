@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SessionCreateForm from '@/components/session/SessionCreateForm.vue'
-import SessionJoinForm from '@/components/session/SessionJoinForm.vue'
 
 definePageMeta({
   title: 'Home',
@@ -9,11 +8,9 @@ definePageMeta({
 </script>
 
 <template>
-    <main>
-      <SessionCreateForm />
-
-      <p>or</p>
-
-      <SessionJoinForm />
+    <main class="relative overflow-hidden">
+      <section class="container mx-auto px-4 py-3 relative z-10">
+        <SessionCreateForm />
+      </section>
     </main>
 </template>
