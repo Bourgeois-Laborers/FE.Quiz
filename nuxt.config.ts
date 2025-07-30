@@ -1,8 +1,8 @@
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: "2025-07-15",
 
   devtools: { enabled: true },
 
@@ -11,34 +11,30 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL
-    }
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
+      socketBaseUrl: process.env.NUXT_PUBLIC_SOCKET_URL,
+    },
   },
 
-  modules: [
-    '@pinia/nuxt',
-    'shadcn-nuxt'
-  ],
+  modules: ["@pinia/nuxt", "shadcn-nuxt"],
 
   app: {
     head: {
-      title: 'Quiz',
+      title: "Quiz",
       htmlAttrs: {
-        lang: 'en',
-      }
-    }
+        lang: "en",
+      },
+    },
   },
 
-  css: ['~/assets/styles/main.css'],
+  css: ["~/assets/styles/main.css"],
 
   vite: {
-    plugins: [
-      tailwindcss()
-    ]
+    plugins: [tailwindcss()],
   },
 
   shadcn: {
-    prefix: '',
-    componentDir: '~/components/base'
-  }
-})
+    prefix: "",
+    componentDir: "~/components/base",
+  },
+});

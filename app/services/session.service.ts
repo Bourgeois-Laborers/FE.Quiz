@@ -1,30 +1,34 @@
-import { httpClient } from './http/http-client'
-import type { ApiResponse } from './http/types'
+import { httpClient } from "./http/http.client";
+import type { ApiResponse } from "./http/types";
 
 export interface Session {
-  id: string
+  id: string;
 }
 
 export interface CreateSessionPayload {
-  userAlias: string
+  userAlias: string;
 }
 
 export interface JoinSessionPayload {
-  userAlias: string
+  userAlias: string;
 }
 
 export class SessionService {
+  async get(sessionId: string): Promise<ApiResponse<Session>> {
+    return httpClient.get<Session>(`/session/${sessionId}`);
+  }
+
   async create(payload: CreateSessionPayload): Promise<ApiResponse<Session>> {
-    return httpClient.post<Session>('/session/create', payload)
+    return httpClient.post<Session>("/session/create", payload);
   }
 
   async join(payload: JoinSessionPayload): Promise<ApiResponse<Session>> {
-    return httpClient.post<Session>('/session/join', payload)
+    return httpClient.post<Session>("/session/join", payload);
   }
 
   async leave(): Promise<ApiResponse<void>> {
-    return httpClient.post<void>('/session/leave')
+    return httpClient.post<void>("/session/leave");
   }
 }
 
-export const sessionService = new SessionService()
+export const sessionService = new SessionService();
