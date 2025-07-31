@@ -93,8 +93,8 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   return {
-    user: readonly(user),
-    isLoading: readonly(isLoading),
+    user,
+    isLoading,
     isAuth,
     login,
     register,

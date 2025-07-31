@@ -74,8 +74,8 @@ export const useSessionStore = defineStore("session", () => {
   };
 
   return {
-    session: readonly(session),
-    isLoading: readonly(isLoading),
+    session,
+    isLoading,
     getSession,
     createSession,
     joinSession,
