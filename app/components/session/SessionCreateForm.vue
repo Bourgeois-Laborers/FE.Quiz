@@ -36,7 +36,7 @@ const form = useForm({
 const onSubmit = form.handleSubmit(async (values) => {
   try {
     isLoading.value = true;
-    if (!isAuth) {
+    if (!isAuth.value) {
       await authStore.register();
     }
 

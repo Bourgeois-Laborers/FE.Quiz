@@ -46,7 +46,6 @@ class OfetchHttpClient implements HttpClient {
 
         switch (response.status) {
           case 401:
-            navigateTo("/login");
             throw createApiError("Unauthorized", 401);
           case 403:
             throw createApiError("Forbidden", 403);

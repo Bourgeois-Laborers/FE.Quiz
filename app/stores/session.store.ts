@@ -26,12 +26,14 @@ export const useSessionStore = defineStore("session", () => {
     }
   };
 
-  const createSession = async (payload: CreateSessionPayload): Promise<Session> => {
+  const createSession = async (
+    payload: CreateSessionPayload
+  ): Promise<Session> => {
     isLoading.value = true;
     try {
       const response = await sessionService.create(payload);
       session.value = response.data;
-      return response.data
+      return response.data;
     } catch (error) {
       console.error("Create session failed:", error);
       throw error;

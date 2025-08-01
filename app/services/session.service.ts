@@ -19,7 +19,7 @@ export class SessionService {
   }
 
   async create(payload: CreateSessionPayload): Promise<ApiResponse<Session>> {
-    return httpClient.post<Session>("/session/create", payload);
+    return httpClient.post<Session>("/session", payload);
   }
 
   async join(payload: JoinSessionPayload): Promise<ApiResponse<Session>> {
