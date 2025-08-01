@@ -6,6 +6,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
+  devServer: {
+    port: 8080,
+  },
+
   // Disable auto imports for components
   components: false,
 
