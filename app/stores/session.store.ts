@@ -16,9 +16,7 @@ export const useSessionStore = defineStore("session", () => {
     isLoading.value = true;
     try {
       const response = await sessionService.get(sessionId);
-      if (response.data) {
-        session.value = response.data;
-      }
+      session.value = response.data;
       return response;
     } catch (error) {
       console.error("Get session failed:", error);
@@ -28,14 +26,12 @@ export const useSessionStore = defineStore("session", () => {
     }
   };
 
-  const createSession = async (payload: CreateSessionPayload) => {
+  const createSession = async (payload: CreateSessionPayload): Promise<Session> => {
     isLoading.value = true;
     try {
       const response = await sessionService.create(payload);
-      if (response.data) {
-        session.value = response.data;
-      }
-      return response;
+      session.value = response.data;
+      return response.data
     } catch (error) {
       console.error("Create session failed:", error);
       throw error;
@@ -44,14 +40,12 @@ export const useSessionStore = defineStore("session", () => {
     }
   };
 
-  const joinSession = async (payload: JoinSessionPayload) => {
+  const joinSession = async (payload: JoinSessionPayload): Promise<Session> => {
     isLoading.value = true;
     try {
       const response = await sessionService.join(payload);
-      if (response.data) {
-        session.value = response.data;
-      }
-      return response;
+      session.value = response.data;
+      return response.data;
     } catch (error) {
       console.error("Join session failed:", error);
       throw error;
