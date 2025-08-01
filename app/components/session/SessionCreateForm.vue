@@ -2,14 +2,13 @@
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from "pinia";
 
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/base/form";
 import { Input } from "@/components/base/input";
 import { Button } from "@/components/base/button";
@@ -24,7 +23,7 @@ const sessionStore = useSessionStore();
 
 const formSchema = toTypedSchema(
   z.object({
-    userAlias: z.string().min(2).max(50),
+    userAlias: z.string().min(1).max(50),
   })
 );
 
@@ -33,12 +32,11 @@ const form = useForm({
 });
 
 const onSubmit = form.handleSubmit(async (values) => {
-  console.log("Form submitted!", values);
   if (!isAuth) {
     await authStore.register();
   }
 
-  const session = await sessionStore.createSession(values)
+  const session = await sessionStore.createSession(values);
 
   navigateTo(`/session/${session.id}`);
 });
@@ -46,8 +44,6 @@ const onSubmit = form.handleSubmit(async (values) => {
 
 <template>
   <form @submit.prevent="onSubmit">
-
-
     <FormField v-slot="{ componentField }" name="userAlias">
       <FormItem>
         <FormLabel>Name</FormLabel>
@@ -57,7 +53,6 @@ const onSubmit = form.handleSubmit(async (values) => {
         <FormDescription>
           Feel free to use any name you like—even something silly or random!
         </FormDescription>
-        <FormMessage />
       </FormItem>
     </FormField>
 
