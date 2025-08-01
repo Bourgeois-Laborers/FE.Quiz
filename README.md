@@ -17,8 +17,8 @@ A real-time quiz platform built with Nuxt 4, Vue 3, and Socket.IO. Create and jo
 
 - Node.js 18+
 - Yarn package manager
-- Backend API server (default: `http://localhost:3001/api`)
-- Socket.IO server (default: `ws://localhost:3000/api`)
+- Backend API server (default: `http://localhost:3000/api`)
+- Socket.IO server (default: `ws://localhost:3000`)
 
 ## Setup
 

@@ -22,7 +22,7 @@ class OfetchHttpClient implements HttpClient {
     };
 
     this.client = $fetch.create({
-      baseURL: this.config.baseURL || "http://localhost:3001/api",
+      baseURL: this.config.baseURL || "http://localhost:3000/api",
       timeout: this.config.timeout,
       retry: this.config.retry,
       credentials: this.config.credentials,

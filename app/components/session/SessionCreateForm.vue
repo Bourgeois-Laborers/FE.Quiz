@@ -21,6 +21,8 @@ const { isAuth } = storeToRefs(authStore);
 
 const sessionStore = useSessionStore();
 
+const isLoading = ref<boolean>(false);
+
 const formSchema = toTypedSchema(
   z.object({
     userAlias: z.string().min(1).max(50),
@@ -32,13 +34,20 @@ const form = useForm({
 });
 
 const onSubmit = form.handleSubmit(async (values) => {
-  if (!isAuth) {
-    await authStore.register();
+  try {
+    isLoading.value = true;
+    if (!isAuth) {
+      await authStore.register();
+    }
+
+    const session = await sessionStore.createSession(values);
+
+    navigateTo(`/session/${session.id}`);
+    isLoading.value = false;
+  } catch (e) {
+    isLoading.value = false;
+    console.error(e);
   }
-
-  const session = await sessionStore.createSession(values);
-
-  navigateTo(`/session/${session.id}`);
 });
 </script>
 
@@ -56,6 +65,8 @@ const onSubmit = form.handleSubmit(async (values) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="mt-6 w-full"> Let's start! </Button>
+    <Button type="submit" :disabled="isLoading" class="mt-6 w-full">
+      Let's start!
+    </Button>
   </form>
 </template>

@@ -13,7 +13,7 @@ class IOSocketClient implements SocketClient {
 
   constructor(config: SocketConfig = {}) {
     this.config = {
-      url: "ws://localhost:3000/api",
+      url: "ws://localhost:3000",
       timeout: 20000,
       autoConnect: false,
       maxReconnectAttempts: 5,
