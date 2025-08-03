@@ -1,56 +1,78 @@
-# Claude Configuration for Nuxt v4 Project
+# CLAUDE.md
 
-## Project Information
-This is a Nuxt v4 project with TypeScript support.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Development Commands
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
 
-## Project Structure
-- `app/` - Main application directory (Nuxt v4 convention)a
-- `public/` - Static assets
-- `nuxt.config.ts` - Nuxt configuration
-- `package.json` - Dependencies and scripts
+- **Start development server**: `yarn dev` (runs on http://localhost:8080)
+- **Build for production**: `yarn build`
+- **Preview production build**: `yarn preview`
+- **Generate static site**: `yarn generate`
+- **Install dependencies**: `yarn install`
 
-## App Folder Rules (Nuxt v4)
-The `app/` directory follows Nuxt v4 conventions:
+## Architecture Overview
 
-### Core Files
-- `app.vue` - Root application component
-- `error.vue` - Global error page component
+This is a **Nuxt 4** real-time quiz platform with the following architecture:
 
-### Directory Structure
-- `components/` - Vue components (auto-imported)
-- `composables/` - Vue composables (auto-imported)
-- `layouts/` - Application layouts
-- `middleware/` - Route middleware
-- `pages/` - File-based routing pages
-- `plugins/` - Nuxt plugins
-- `server/` - Server-side code (API routes, middleware)
-- `utils/` - Utility functions (auto-imported)
-- `assets/` - Assets processed by build tools
-- `public/` - Static assets served directly
+### Core Technology Stack
 
-### Auto-Import Rules
-- Components in `components/` are auto-imported
-- Composables in `composables/` are auto-imported
-- Utilities in `utils/` are auto-imported
-- Use PascalCase for component names
-- Use camelCase for composables and utilities
+- **Framework**: Nuxt 4 (Vue 3, TypeScript, file-based routing)
+- **Styling**: TailwindCSS 4.x with shadcn-vue components
+- **State Management**: Pinia stores
+- **Real-time**: Custom Socket.IO wrapper for live updates
+- **HTTP Client**: Custom ofetch wrapper with error handling
+- **Forms**: vee-validate + Zod validation
+- **Package Manager**: Yarn
 
-### File Naming
-- Pages: Use kebab-case (e.g., `user-profile.vue`)
-- Components: Use PascalCase (e.g., `UserProfile.vue`)
-- Composables: Prefix with `use` (e.g., `useAuth.ts`)
-- Layouts: Use kebab-case (e.g., `default.vue`, `admin.vue`)
+### Key Configuration
 
-## Key Technologies
-- Nuxt v4
-- TypeScript
-- Vue 3
+- **Dev server**: Runs on port 8080 (configured in nuxt.config.ts:10)
+- **Component auto-imports**: Disabled (nuxt.config.ts:14)
+- **shadcn components**: Located in `~/components/base/` with no prefix
+- **API defaults**: HTTP client defaults to `http://localhost:3000/api`, Socket.IO defaults to `ws://localhost:3000`
 
-## Notes
-- This project is migrating from Quasar to Nuxt v4
-- Current branch: refactor/0.0.1
-- Main branch: main
+### Directory Structure & Patterns
+
+**Services Layer** (`app/services/`):
+
+- `http/http.client.ts`: Centralized HTTP client using ofetch with automatic error handling
+- `socket/socket-io.client.ts`: Centralized Socket.IO wrapper with reconnection logic and error handling
+- `auth.service.ts` & `session.service.ts`: Business logic services
+
+New services must be added with consistent naming and style patterns. Each service manage single buisness entity.
+
+**State Management** (`app/stores/`):
+
+- Pinia stores using composition API pattern
+- `auth.store.ts`: Handles user authentication with localStorage persistence
+- `session.store.ts`: Manages quiz session state
+
+New stores must be added with consistent naming and style patterns.
+
+**Components**:
+
+- `app/components/base/`: shadcn-vue UI components (Button, Dialog, Form, Input, etc.)
+- `app/components/*/**`: Specific components divided by pages
+
+New components must be added with consistent naming and style patterns.
+
+**Key Implementation Details**:
+
+- Authentication uses localStorage for persistence with auto-restoration
+- HTTP client includes automatic credential handling and structured error responses
+- Socket client has built-in reconnection with exponential backoff
+- All services follow dependency injection pattern for testability
+
+### Environment Configuration
+
+The application expects these environment variables:
+
+- `NUXT_PUBLIC_API_BASE_URL`: Backend API URL (default: http://localhost:3000/api)
+- `NUXT_PUBLIC_SOCKET_URL`: Socket.IO server URL (default: ws://localhost:3000)
+
+### Important Notes
+
+- Components auto-import is disabled - manually import all components
+- Uses `import.meta.client` for client-side only code (localStorage access)
+- Error handling is centralized in service layers with consistent error objects
+- All HTTP requests include credentials automatically

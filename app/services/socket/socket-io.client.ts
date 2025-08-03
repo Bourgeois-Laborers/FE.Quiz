@@ -132,6 +132,6 @@ class IOSocketClient implements SocketClient {
 }
 
 export const socketClient = new IOSocketClient({
-  url: process.env.NUXT_PUBLIC_SOCKET_BASE_URL,
+  url: process.env.VITE_WEBSOCKET_BASE_URL,
 });
 export { IOSocketClient };

@@ -21,6 +21,10 @@ export class AuthService {
   async logout(): Promise<ApiResponse<void>> {
     return httpClient.post<void>("/auth/logout");
   }
+
+  async restore(): Promise<ApiResponse<User>> {
+    return httpClient.get<User>("/auth/restore");
+  }
 }
 
 export const authService = new AuthService();

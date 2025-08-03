@@ -13,14 +13,7 @@ export default defineNuxtConfig({
   // Disable auto imports for components
   components: false,
 
-  runtimeConfig: {
-    public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
-      socketBaseUrl: process.env.NUXT_PUBLIC_SOCKET_URL,
-    },
-  },
-
-  modules: ["@pinia/nuxt", "shadcn-nuxt"],
+  modules: ["@pinia/nuxt", "shadcn-nuxt", "@vueuse/nuxt"],
 
   app: {
     head: {

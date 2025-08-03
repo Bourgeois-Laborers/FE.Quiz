@@ -102,6 +102,6 @@ class OfetchHttpClient implements HttpClient {
 }
 
 export const httpClient = new OfetchHttpClient({
-  baseURL: process.env.NUXT_PUBLIC_API_BASE_URL,
+  baseURL: process.env.VITE_API_BASE_URL,
 });
 export { OfetchHttpClient };

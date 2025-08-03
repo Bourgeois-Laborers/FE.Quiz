@@ -17,7 +17,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import { useSessionStore } from "@/stores/session.store";
 
 const authStore = useAuthStore();
-const { isAuth } = storeToRefs(authStore);
+const { user } = storeToRefs(authStore);
 
 const sessionStore = useSessionStore();
 
@@ -36,7 +36,7 @@ const form = useForm({
 const onSubmit = form.handleSubmit(async (values) => {
   try {
     isLoading.value = true;
-    if (!isAuth.value) {
+    if (!user.value) {
       await authStore.register();
     }
 

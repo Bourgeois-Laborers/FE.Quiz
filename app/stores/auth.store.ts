@@ -1,26 +1,23 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { ref } from "vue";
+import { useStorage } from "@vueuse/core";
 
 import { authService } from "~/services/auth.service";
 import type { User, LoginCredentials } from "~/services/auth.service";
-
-const USER_ID_KEY = "quiz_user_id";
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<User | null>(null);
   const isLoading = ref<boolean>(false);
 
-  const isAuth = computed<boolean>(() => !!user.value);
+  const persistedUserId = useStorage<string | null>("persistedUserId", null);
 
   const login = async (credentials: LoginCredentials) => {
     isLoading.value = true;
     try {
       const response = await authService.login(credentials);
-      if (response.data) {
-        user.value = response.data;
-        persistUserId(response.data.id);
-      }
-      return response;
+      user.value = response.data;
+      persistedUserId.value = response.data.id;
+      return response.data;
     } catch (error) {
       console.error("Login failed:", error);
       throw error;
@@ -33,11 +30,9 @@ export const useAuthStore = defineStore("auth", () => {
     isLoading.value = true;
     try {
       const response = await authService.register();
-      if (response.data) {
-        user.value = response.data;
-        persistUserId(response.data.id);
-      }
-      return response;
+      user.value = response.data;
+      persistedUserId.value = response.data.id;
+      return response.data;
     } catch (error) {
       console.error("Registration failed:", error);
       throw error;
@@ -51,54 +46,44 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       await authService.logout();
       user.value = null;
-      clearPersistedUserId();
+      persistedUserId.value = null;
     } catch (error) {
       console.error("Logout failed:", error);
       user.value = null;
-      clearPersistedUserId();
+      persistedUserId.value = null;
     } finally {
       isLoading.value = false;
     }
   };
 
-  const restoreAuth = async () => {
-    const persistedUserId = getPersistedUserId();
-    if (persistedUserId) {
-      try {
-        await login({ userId: persistedUserId });
-      } catch (error) {
-        console.error("Auth restoration failed:", error);
-        clearPersistedUserId();
+  const restore = async () => {
+    isLoading.value = true;
+    try {
+      const response = await authService.restore();
+      user.value = response.data;
+      persistedUserId.value = response.data.id;
+    } catch (error) {
+      console.error("Cookie-based auth restoration failed:", error);
+
+      if (persistedUserId.value) {
+        try {
+          await login({ userId: persistedUserId.value });
+        } catch (loginError) {
+          console.error("UserId-based login failed:", loginError);
+          persistedUserId.value = null;
+        }
       }
-    }
-  };
-
-  const persistUserId = (userId: string) => {
-    if (import.meta.client) {
-      localStorage.setItem(USER_ID_KEY, userId);
-    }
-  };
-
-  const getPersistedUserId = (): string | null => {
-    if (import.meta.client) {
-      return localStorage.getItem(USER_ID_KEY);
-    }
-    return null;
-  };
-
-  const clearPersistedUserId = () => {
-    if (import.meta.client) {
-      localStorage.removeItem(USER_ID_KEY);
+    } finally {
+      isLoading.value = false;
     }
   };
 
   return {
     user,
     isLoading,
-    isAuth,
     login,
     register,
     logout,
-    restoreAuth,
+    restore,
   };
 });
