@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async restore(): Promise<ApiResponse<User>> {
-    return httpClient.get<User>("/auth/restore");
+    return httpClient.get<User>("/auth/user");
   }
 }
 

@@ -55,18 +55,22 @@ const onSubmit = form.handleSubmit(async (values) => {
   <form @submit.prevent="onSubmit">
     <FormField v-slot="{ componentField }" name="userAlias">
       <FormItem>
-        <FormLabel>Name</FormLabel>
+        <FormLabel>What's your name?</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="Enter name" v-bind="componentField" />
+          <Input
+            type="text"
+            placeholder="Enter your name"
+            v-bind="componentField"
+          />
         </FormControl>
         <FormDescription>
-          Feel free to use any name you like—even something silly or random!
+          Anything goes—even something quirky or totally random!
         </FormDescription>
       </FormItem>
     </FormField>
 
     <Button type="submit" :disabled="isLoading" class="mt-6 w-full">
-      Let's start!
+      Let's Play!
     </Button>
   </form>
 </template>
