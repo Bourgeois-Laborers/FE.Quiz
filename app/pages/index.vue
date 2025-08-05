@@ -90,9 +90,7 @@ const features: IFeature[] = [
           friends compete in real-time.
         </span>
         <br />
-        <span class="bg-background px-1">
-          No accounts required. Just pure quiz fun.
-        </span>
+        <span class="bg-background px-1"> Just pure quiz fun. </span>
       </p>
     </section>
 
@@ -177,12 +175,12 @@ const features: IFeature[] = [
   -webkit-mask-image: linear-gradient(
     to bottom,
     var(--color-background) 20%,
-    transparent 80%
+    transparent 85%
   );
   mask-image: linear-gradient(
     to bottom,
     var(--color-background) 20%,
-    transparent 80%
+    transparent 85%
   );
   z-index: -1;
 }
