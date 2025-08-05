@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { User, Handshake, Bolt, Play } from "lucide-vue-next";
-
 import {
   Card,
   CardHeader,
@@ -15,7 +13,6 @@ import SessionCreateForm from "@/components/session/SessionCreateForm.vue";
 interface IStep {
   title: string;
   description: string;
-  icon: any;
 }
 
 interface IFeature {
@@ -30,50 +27,41 @@ definePageMeta({
 
 const steps: IStep[] = [
   {
-    title: "Enter Your Name",
-    description: "Pick any username you like—no registration needed.",
-    icon: User,
+    title: "Create & Invite",
+    description:
+      "Enter your nickname—no sign-up needed. Share the link and bring your friends in.",
   },
   {
-    title: "Invite Your Squad",
-    description:
-      "Share one link and watch friends join your quiz lobby instantly.",
-    icon: Handshake,
+    title: "Choose a Topic",
+    description: "Pick any quiz topic—our AI handles the rest.",
   },
   {
-    title: "AI Creates Your Quiz",
+    title: "Start the Quiz",
     description:
-      "Choose any topic and our AI generates challenging questions in seconds.",
-    icon: Bolt,
-  },
-  {
-    title: "Battle It Out!",
-    description:
-      "Compete in real-time and see who's the ultimate quiz champion.",
-    icon: Play,
+      "AI-generated questions, live competition, and a race to the top of the leaderboard!",
   },
 ];
 
 const features: IFeature[] = [
   {
-    title: "Zero Friction, Maximum Fun",
+    title: "Jump In",
     description:
-      "Skip the boring sign-up process. Enter a name and start playing in under 10 seconds.",
+      "No accounts, no hassle. Just pick a name and you’re playing in seconds.",
   },
   {
-    title: "Real-Time Multiplayer Magic",
+    title: "Live Multiplayer Thrills",
     description:
-      "Experience the thrill of live competition with instant scoring and real-time reactions.",
+      "Play in real-time with friends. Instant scoring and reactions keep the energy high.",
   },
   {
-    title: "Unlimited Quiz Possibilities",
+    title: "AI-Powered Quiz Variety",
     description:
-      "From 'Marvel Movies' to 'Ancient History'—our AI crafts perfect quizzes on any topic you imagine.",
+      "From pop culture to deep science, our AI creates the perfect quiz on any topic you choose.",
   },
   {
-    title: "Built for Everyone",
+    title: "Fun for All",
     description:
-      "Whether you're 4 or 20, host a family game night or challenge your smartest friends.",
+      "It’s perfect for families, classrooms, or friendly rivalries—play from any device with internet.",
   },
 ];
 </script>
@@ -93,12 +81,18 @@ const features: IFeature[] = [
 
     <section class="mb-8 md:mb-12 container mx-auto px-4 md:px-6">
       <p class="mx-auto text-base md:text-lg text-center max-w-3xl">
-        Turn any topic into an exciting quiz battle.
+        <span class="bg-background px-1">
+          Turn any topic into an exciting quiz battle.
+        </span>
         <br />
-        Our AI creates personalized quizzes instantly while you and your friends
-        compete in real-time.
+        <span class="bg-background px-1">
+          Our AI creates personalized quizzes instantly while you and your
+          friends compete in real-time.
+        </span>
         <br />
-        No accounts required. Just pure quiz fun.
+        <span class="bg-background px-1">
+          No accounts required. Just pure quiz fun.
+        </span>
       </p>
     </section>
 
@@ -115,23 +109,25 @@ const features: IFeature[] = [
         Get Started in 4 Simple Steps
       </h2>
 
-      <ol class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <ol class="home-page__features grid gap-4 w-max mx-auto">
         <li
           v-for="(step, index) in steps"
           :key="`step-${index}`"
-          class="flex flex-col items-center"
+          class="flex gap-4"
         >
           <span
-            class="mb-2 bg-primary rounded-full w-12 h-12 flex items-center justify-center"
+            class="mb-2 bg-primary text-lg text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center"
           >
-            <component :is="step.icon" class="text-primary-foreground" />
+            {{ index + 1 }}
           </span>
-          <h3 class="mb-1 text-base text-center font-medium">
-            {{ step.title }}
-          </h3>
-          <p class="text-sm text-center text-muted-foreground">
-            {{ step.description }}
-          </p>
+          <div>
+            <h3 class="mb-1 text-base font-medium">
+              {{ step.title }}
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              {{ step.description }}
+            </p>
+          </div>
         </li>
       </ol>
     </section>
@@ -145,7 +141,7 @@ const features: IFeature[] = [
         <Card
           v-for="(feature, index) in features"
           :key="`feature-${index}`"
-          class="text-center"
+          class="text-center gap-1"
         >
           <CardHeader>
             <CardTitle>{{ feature.title }}</CardTitle>
@@ -188,5 +184,20 @@ const features: IFeature[] = [
     var(--color-background) 20%,
     transparent 80%
   );
+  z-index: -1;
+}
+
+.home-page__features li {
+  position: relative;
+}
+
+.home-page__features li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 48px;
+  width: 2px;
+  height: 32px;
+  background-color: var(--color-border);
 }
 </style>
