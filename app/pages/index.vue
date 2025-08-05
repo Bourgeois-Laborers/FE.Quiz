@@ -114,7 +114,7 @@ const features: IFeature[] = [
           class="flex gap-4"
         >
           <span
-            class="mb-2 bg-primary text-lg text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center"
+            class="mb-2 bg-primary text-lg text-primary-foreground border border-primary rounded-full w-12 h-12 flex items-center justify-center"
           >
             {{ index + 1 }}
           </span>
@@ -195,7 +195,7 @@ const features: IFeature[] = [
   left: 24px;
   top: 48px;
   width: 2px;
-  height: 32px;
+  height: 24px;
   background-color: var(--color-border);
 }
 </style>
